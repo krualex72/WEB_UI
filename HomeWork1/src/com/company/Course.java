@@ -21,7 +21,9 @@ public class Course {
             boolean result = true; // изначально полагаем, что участник пройдет испытание
             for (int j=0; j < 5; j++) { // перебираем испытания
                 // позволет ли физическая форма участинка пройти испытание j?
-                result = stage[j].getPhyCondLimit() > member[i].getPhysicalCondition() ? false : true;
+                if (stage[j].getPhyCondLimit() > member[i].getPhysicalCondition()) {
+                  result = false;
+                }
             }
             member[i].setResult(result); // записываем общий результат участника
         }
