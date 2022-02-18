@@ -29,8 +29,8 @@ public class Main {
     public static int convertAndSummArrayData(String arr[][]) throws MyArraySizeException { //, MyArrayDataException{
         int summOfCells = 0;
         if (arr[0].length != 4 || arr.length != 4) throw new MyArraySizeException("Wrong Array Lenght!!!");
-        System.out.println("Number of colls" + arr[0].length);
-        System.out.println("Number of lines" + arr.length);
+        System.out.println("Number of colls " + arr[0].length);
+        System.out.println("Number of lines " + arr.length);
         for (int i=0; i<4; i++) {
             for (int j=0; j<4; j++) {
                 try {
