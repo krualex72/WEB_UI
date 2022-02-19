@@ -1,5 +1,5 @@
 package lesson3;
-//Написать метод, который меняет два элемента массива местами (массив может быть любого ссылочного типа);
+
 //        2. Задача:
 //        Даны классы Fruit, Apple extends Fruit, Orange extends Fruit;
 //        Класс Box, в который можно складывать фрукты. Коробки условно сортируются по типу фрукта, поэтому в одну коробку нельзя сложить и яблоки, и апельсины;
@@ -12,6 +12,8 @@ package lesson3;
 public class HomeWork3 {
 
     public static void main(String[] args) {
-	// write your code here
-    }
+	// System.out.println (Orange.getWeight() + Apple.getWeight());
+
+        }
 }
+
