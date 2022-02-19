@@ -52,12 +52,12 @@ public class SwapArrayData {
         }
         System.out.print("Swaped Integer Array: ");
         arrayInteger.printArray();
-        // флоат массив - ОШИБКА В ИНДЕКСЕ СПЕЦИАЛЬНО
+        // флоат массив
         ArrayData<Float> arrayFloat = new ArrayData<Float>(1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f);
         System.out.print("\nOriginal Float Array: ");
         arrayFloat.printArray();
         try {
-            arrayFloat.swapArrayData(5,9);
+            arrayFloat.swapArrayData(5,6);
             System.out.print("Swaped Float Array: ");
             arrayFloat.printArray();
         } catch (MyWrongIndexException e) {
@@ -85,16 +85,16 @@ public class SwapArrayData {
         } catch (MyWrongIndexException e) {
             System.err.println(e.getMessage());
         }
-        // булеан массив
+        // булеан массив - ОШИБКА В ИНДЕКСАХ
         ArrayData<Boolean> arrayBoolean = new ArrayData<Boolean>(true, true, true, false, false, false, false);
         System.out.print("\nOriginal Boolean Array: ");
         arrayBoolean.printArray();
         try {
-            arrayBoolean.swapArrayData(6,2);
+            arrayBoolean.swapArrayData(6,12);
             System.out.print("Swaped Boolean Array: ");
             arrayBoolean.printArray();
         } catch (MyWrongIndexException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         }
 

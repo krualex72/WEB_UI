@@ -1,7 +1,7 @@
 package lesson3;
 
 public class Apple extends Fruit {
-    private Apple() {
+    public Apple() {
         super(1.0f);
     }
 }
