@@ -19,16 +19,16 @@ public class SwapArrayData {
             System.out.println(Arrays.toString(arrayT));
         }
 
-    public void swapArrayData(int indexOne, int indexTwo) throws MyWrongIndexException {
-        if (indexOne < 0 || indexOne > (arrayT.length-1) || indexTwo < 0 || indexTwo > (arrayT.length-1) ||
+        public void swapArrayData(int indexOne, int indexTwo) throws MyWrongIndexException {
+            if (indexOne < 0 || indexOne > (arrayT.length-1) || indexTwo < 0 || indexTwo > (arrayT.length-1) ||
                 indexOne == indexTwo) {
-            throw new MyWrongIndexException("Заданные значения индексов не соответствуют размеру массива");
+                throw new MyWrongIndexException("Заданные значения индексов не соответствуют размеру массива");
+            }
+            T bufferData = arrayT[indexOne];// переменная для хранения переносимой величины
+            arrayT[indexOne] = arrayT[indexTwo];
+            arrayT[indexTwo] = bufferData;
         }
-        T bufferData = arrayT[indexOne];// переменная для хранения переносимой величины
-        arrayT[indexOne] = arrayT[indexTwo];
-        arrayT[indexTwo] = bufferData;
     }
-}
     public static void main(String[] args) {
         // строковый массив
         ArrayData<String> arrayString = new ArrayData<String>("cat", "dog", "monkey", "donkey", "eagle");

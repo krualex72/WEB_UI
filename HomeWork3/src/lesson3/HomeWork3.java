@@ -14,6 +14,13 @@ public class HomeWork3 {
     public static void main(String[] args) {
 	// System.out.println (Orange.getWeight() + Apple.getWeight());
 
+        Box<Apple> appleBox1 = new Box<>( Apple,25.0f, 5); //Box<Apple> appleBox1 = new Box<Apple>(Apple,25.0f, 5);
+        // Box<Orange> box2 = new Box<Orange>( Orange,20.0f, 1);
+        System.out.println (appleBox1.getWeightLimit());
+        System.out.println (appleBox1.getCounts());
+        System.out.println (appleBox1.getContent());
+        // SwapArrayData.ArrayData<Float> arrayFloat = new SwapArrayData.ArrayData<Float>(1.0f, 8.0f);
+
         }
 }
 
