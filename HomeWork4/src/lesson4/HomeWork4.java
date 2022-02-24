@@ -2,6 +2,8 @@ package lesson4;
 
 import java.util.*;
 
+import static lesson4.PhoneBook.*;
+
 public class HomeWork4 {
 
     public static void main(String[] args) {
@@ -34,9 +36,16 @@ public class HomeWork4 {
             }
             System.out.println(w.getKey() + ": " + w.getValue());
         }
+
+        System.out.println("\nЗадание 2");
+        PhoneBook myPhoneBook = new PhoneBook();
+        myPhoneBook.addContact("Ivanov", 89266855869L);
+        myPhoneBook.addContact("Petrov", 89261235869L);
+        myPhoneBook.addContact("Sidorov", 89235896869L);
+        myPhoneBook.addContact("Ivanov", 89256915869L);
+        myPhoneBook.addContact("Vasiliev", 89056989869L);
+        myPhoneBook.getPhone("Ivanov");
+        myPhoneBook.getPhone("Ivanovм"); // несуществующий контакт
+        myPhoneBook.getPhone("Sidorov");
     }
-    // Написать простой класс Телефонный Справочник, который хранит в себе список фамилий и телефонных номеров.
-    // В этот телефонный справочник с помощью метода add() можно добавлять записи, а с помощью метода get() искать
-    // номер телефона по фамилии. Следует учесть, что под одной фамилией может быть несколько телефонов (в случае
-    // однофамильцев), тогда при запросе такой фамилии должны выводиться все телефоны.
 }
