@@ -1,6 +1,9 @@
 package lesson5;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class HomeWork5 {
 
@@ -25,6 +28,7 @@ public class HomeWork5 {
         //}
         //Если выполняется save(AppData data), то старые данные в файле полностью перезаписываются.
         System.out.println("Задание 1");
+        String headerStr;
         String[] header = {"NumberID", "CodeITN", "Salary", "Age"};
         int[][] data = {{1, 78569856, 150000, 27},
                 {2, 78569789, 155000, 31},
@@ -34,9 +38,22 @@ public class HomeWork5 {
         };
         File fileCSV = new File("src/lesson5/h_work5_task1.csv");
 
-        System.out.println(fileCSV.getName());
-        System.out.println(fileCSV.exists());
-        System.out.println(fileCSV.isDirectory());
+        System.out.println("Имя файла: " + fileCSV.getName());
+        System.out.println("Файл существует: " + fileCSV.exists());
+        //System.out.println(fileCSV.isDirectory());
+        headerStr = header[0];
+        for (int i = 1; i < header.length; i++) {
+            headerStr += ("; " + header[i]);
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/lesson5/h_work5_task1.csv"))) {
+            writer.write(headerStr);
+            for (int i = 0; i < header.length; i++) {
+                writer.write("Java\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
