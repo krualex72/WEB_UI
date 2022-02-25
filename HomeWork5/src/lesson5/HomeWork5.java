@@ -1,5 +1,7 @@
 package lesson5;
 
+import java.io.File;
+
 public class HomeWork5 {
 
     public static void main(String[] args) {
@@ -30,6 +32,11 @@ public class HomeWork5 {
                 {4, 78569449, 158000, 23},
                 {5, 78569773, 179000, 35}
         };
+        File fileCSV = new File("src/lesson5/h_work5_task1.csv");
+
+        System.out.println(fileCSV.getName());
+        System.out.println(fileCSV.exists());
+        System.out.println(fileCSV.isDirectory());
 
     }
 }
