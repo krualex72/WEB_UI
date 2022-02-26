@@ -1,7 +1,6 @@
 package lesson5;
 
 import java.io.*;
-import java.util.Arrays;
 
 public class HomeWork5 {
 
