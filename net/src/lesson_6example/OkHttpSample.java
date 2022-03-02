@@ -12,7 +12,14 @@ public class OkHttpSample {
     public static void main(String[] args) throws IOException {
 
         // Экземпляр класса OkHttpClient выполняет всю работу по созданию и отправке запросов
-        OkHttpClient client = new OkHttpClient();
+        OkHttpClient client = new OkHttpClient()
+                .newBuilder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(10, TimeUnit.SECONDS)
+                .followRedirects(true)
+                .retryOnConnectionFailure(true)
+                .build();
 
         // Экземпляр класса Request создается через Builder (см. паттерн проектирования "Строитель")
         Request request = new Request.Builder()
@@ -32,16 +39,5 @@ public class OkHttpSample {
         System.out.println(response.protocol());
         System.out.println(response.receivedResponseAtMillis());
     }
-//    OkHttpClient client = new OkHttpClient()
-//            .newBuilder()
-//            .connectTimeout(10, TimeUnit.SECONDS)
-//            .readTimeout(10, TimeUnit.SECONDS)
-//            .writeTimeout(10, TimeUnit.SECONDS)
-//            .followRedirects(true)
-//            .retryOnConnectionFailure(true)
-//            .build();
-
-
-
 }
 
