@@ -5,17 +5,20 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class HomeWork6 {
 
-    private static final String BASE_HOST = "api.openweathermap.org";
-    private static final String API_VERSION = "data/2.5";
-    private static final String WEATHER_API = "onecall";
+    static Properties prop = new Properties();
+    //private static final String BASE_HOST = "api.openweathermap.org";
+    //private static final String API_VERSION = "data/2.5";
+    //private static final String WEATHER_API = "onecall";
 
     public static void main(String[] args) throws IOException {
-        //   OkHttpClient client = new OkHttpClient();
+        loadProperties();
         OkHttpClient client = new OkHttpClient()
                 .newBuilder()
                 .connectTimeout(10, TimeUnit.SECONDS)
@@ -29,16 +32,15 @@ public class HomeWork6 {
         // exclude=current,minutely,hourly,alerts&lang=ru&appid=01eac0de5d2affe081c7741a740ea3b4
         HttpUrl url1 = new HttpUrl.Builder()
                 .scheme("https")
-                .host(BASE_HOST) // api.openweathermap.org
-                .addPathSegment(API_VERSION) // data/2.5
-                .addPathSegment(WEATHER_API) // onecall
-                .addQueryParameter("lat", "59.938732") // широта
-                .addQueryParameter("lon", "30.31622") // долгота
-                .addQueryParameter("units", "metric") // единицы измерений
-                .addQueryParameter("cnt", "5") // период прогнозирования
-                .addQueryParameter("exclude", "current,minutely,hourly,alerts") // исключения прогнозов
+                .host(prop.getProperty("BASE_HOST"))
+                .addPathSegment(prop.getProperty("API_VERSION"))
+                .addPathSegment(prop.getProperty("WEATHER_API"))
+                .addQueryParameter("lat", prop.getProperty("LATITUDE")) // широта
+                .addQueryParameter("lon", prop.getProperty("LONGITUDE")) // долгота
+                .addQueryParameter("units", prop.getProperty("UNITS")) // единицы измерений
+                .addQueryParameter("exclude", prop.getProperty("EXCLUDE")) // исключения прогнозов
                 .addQueryParameter("lang", "ru") // язык
-                .addQueryParameter("appid", "01eac0de5d2affe081c7741a740ea3b4") // токен
+                .addQueryParameter("appid", prop.getProperty("APPID")) // токен
                 .build();
 
         // Экземпляр класса Request создаём через Builder
@@ -65,5 +67,9 @@ public class HomeWork6 {
 //        System.out.println(jsonResponse);
 
     }
-
+    private static void loadProperties() throws IOException {
+        try(FileInputStream configFile = new FileInputStream("src/HW6/HomeWork6.properties")){
+            prop.load(configFile);
+        }
+    }
 }
