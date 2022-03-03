@@ -1,7 +1,7 @@
 package HomeWork7;
 
-import HomeWork7.project.enums.Functionality;
-import HomeWork7.project.enums.Periods;
+import HomeWork7.project.enum.Functionality;
+import HomeWork7.project.enum.Periods;
 
 import java.io.IOException;
 import java.util.HashMap;
