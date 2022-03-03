@@ -1,7 +1,7 @@
 package HomeWork7;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lesson7.project.enums.Periods;
+import HomeWork7.enum.Periods;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

@@ -1,4 +1,4 @@
-package HomeWork7;
+package HomeWork7.enum;
 
 public enum Periods {
     NOW,
