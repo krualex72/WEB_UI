@@ -1,4 +1,4 @@
-package lesson_6example;
+package HW6;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
