@@ -1,6 +1,6 @@
 package HomeWork7;
 
-import HomeWork7.project.enum.Periods;
+import HomeWork7.enum.Periods;
 
 import java.io.IOException;
 
