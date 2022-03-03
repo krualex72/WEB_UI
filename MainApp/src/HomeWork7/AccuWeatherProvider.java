@@ -1,14 +1,18 @@
 package HomeWork7;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import HomeWork7.enum.Periods;
+
+
+import java.io.IOException;
+
+
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import HomeWork7.enums.Periods;
 
-import java.io.IOException;
 
 public class AccuWeatherProvider implements WeatherProvider {
 

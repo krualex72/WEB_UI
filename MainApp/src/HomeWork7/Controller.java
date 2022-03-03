@@ -1,11 +1,15 @@
 package HomeWork7;
 
-import HomeWork7.enum.Functionality;
-import HomeWork7.enum.Periods;
+
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import HomeWork7.enums.Functionality;
+import HomeWork7.enums.Periods;
+
+
 
 public class Controller {
 
