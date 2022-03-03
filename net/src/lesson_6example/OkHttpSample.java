@@ -23,7 +23,7 @@ public class OkHttpSample {
 
         // Экземпляр класса Request создается через Builder (см. паттерн проектирования "Строитель")
         Request request = new Request.Builder()
-                .url("https://skipper-school.online")
+                .url("https://gb.ru")
                 .build();
 
         // Получение объекта ответа от сервера
