@@ -3,7 +3,7 @@ package HomeWork7;
 
 import java.io.IOException;
 
-import Homework7.enum.Periods;
+import HomeWork7.enums.Periods;
 
 public interface WeatherProvider {
 
