@@ -4,6 +4,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -62,6 +63,8 @@ public class HomeWork6 {
         System.out.println("Successful?: " + response.isSuccessful());
         System.out.println("Protocol:  " + response.protocol());
         System.out.println("Mills: " + response.receivedResponseAtMillis());
+
+        ObjectMapper objectMapper = new ObjectMapper();
  //       System.out.println("JSON Response:");
 //        String jsonResponse = client.newCall(request).execute().body().string();
 //        System.out.println(jsonResponse);

@@ -1,9 +1,11 @@
 package HomeWork7;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.fasterxml.jackson.core.JsonProcessingException;
 import HomeWork7.enums.Periods;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

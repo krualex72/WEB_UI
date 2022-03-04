@@ -10,7 +10,7 @@ public class UserInterface {
     public void runApplication() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Введите название города на английском языке");
+            System.out.println("Введите название города на английском языке: ");
             String city = scanner.nextLine();
 
             setGlobalCity(city);
@@ -52,13 +52,13 @@ public class UserInterface {
 
     private void validateUserInput(String userInput) throws IOException {
         if (userInput == null || userInput.length() != 1) {
-            throw new IOException("Incorrect user input: expected one digit as answer, but actually get " + userInput);
+            throw new IOException("Некорректный ввод: ожидается одно чисоло в ответе, фактически введено:  " + userInput);
         }
         int answer = 0;
         try {
             answer = Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new IOException("Incorrect user input: character is not numeric!");
+            throw new IOException("Некорректный ввод: это не число!");
         }
     }
 
