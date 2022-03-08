@@ -112,20 +112,20 @@ public class AccuWeatherProvider implements WeatherProvider {
 
 
 
-                Response response = client.newCall(request).execute();
-                String body = removeFirstAndLastChar(response.body().string()); // для упрощения десериализации
-                // System.out.println( "New body " + body); вывод ответа с сервера в "удобном" формате
-                ObjectMapper objectMapper1day = new ObjectMapper();
-                JsonNode weatherText = objectMapper1day // текстовое значение погоды
-                        .readTree(body)
-                        .at("/WeatherText");
-                JsonNode currentTemperetura = objectMapper1day // значение температуры
-                        .readTree(body)
-                        .at("/Temperature/Metric/Value");
-                System.out.println("ПРИМЕР БЕЗ ДЕСЕРИАЛИЗАЦИИ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherText.asText() +", температура: " + currentTemperetura);
-
-                WeatherResponse weatherResponse = objectMapper1day.readValue(body, WeatherResponse.class);
-                System.out.println( "ПРИМЕР С ДЕСЕРИАЛИЗАЦИЕЙ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherResponse.getWeatherText() + weatherResponse.getTemperature());
+//                Response response = client.newCall(request).execute();
+//                String body = removeFirstAndLastChar(response.body().string()); // для упрощения десериализации
+//                // System.out.println( "New body " + body); вывод ответа с сервера в "удобном" формате
+//                ObjectMapper objectMapper1day = new ObjectMapper();
+//                JsonNode weatherText = objectMapper1day // текстовое значение погоды
+//                        .readTree(body)
+//                        .at("/WeatherText");
+//                JsonNode currentTemperetura = objectMapper1day // значение температуры
+//                        .readTree(body)
+//                        .at("/Temperature/Metric/Value");
+//                System.out.println("ПРИМЕР БЕЗ ДЕСЕРИАЛИЗАЦИИ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherText.asText() +", температура: " + currentTemperetura);
+//
+//                WeatherResponse weatherResponse = objectMapper1day.readValue(body, WeatherResponse.class);
+//                System.out.println( "ПРИМЕР С ДЕСЕРИАЛИЗАЦИЕЙ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherResponse.getWeatherText() + weatherResponse.getTemperature());
             }
         }
 
