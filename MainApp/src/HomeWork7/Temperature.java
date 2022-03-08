@@ -28,5 +28,4 @@ public class Temperature {
     public void setMetric(Metric MetricObject) {
         this.MetricObject = MetricObject;
     }
-
 }
