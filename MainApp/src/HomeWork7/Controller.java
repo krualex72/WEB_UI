@@ -23,6 +23,7 @@ public class Controller {
             throw new IOException("There is no command for command-key " + command);
         }
 
+
         switch (variantResult.get(command)) {
             case GET_CURRENT_WEATHER:
                 getCurrentWeather();
