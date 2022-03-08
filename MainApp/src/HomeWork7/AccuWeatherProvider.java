@@ -30,22 +30,38 @@ public class AccuWeatherProvider implements WeatherProvider {
                     .scheme("http")
                     .host(BASE_HOST)
                     .addPathSegment(CURRENT_CONDITIONS_ENDPOINT)
+                    //.addPathSegment("ru")
                     .addPathSegment(API_VERSION)
                     .addPathSegment(cityKey)
+                    .addQueryParameter("language", "ru-ru") // язык
                     .addQueryParameter("apikey", API_KEY)
                     .build();
-
+            System.out.println("link = " + url);
             Request request = new Request.Builder()
                     .addHeader("accept", "application/json")
                     .url(url)
                     .build();
 
             Response response = client.newCall(request).execute();
-            System.out.println(response.body().string());
-            // TODO: Сделать в рамках д/з вывод более приятным для пользователя.
+            String body = removeFirstAndLastChar(response.body().string());
+            System.out.println( "New body " + body);
+            // ObjectMapper objectMapper1day = new ObjectMapper();
+            // WeatherResponse weatherResponse = objectMapper1day.readValue(body, WeatherResponse.class);
+            //System.out.println( "New weather " + weatherResponse.toString()); //getWeatherText());
+          // System.out.println(weatherResponse.toString());
+//        }
+//
+//        console output >> Car{color='red', type='BMW'}
+
+        // TODO: Сделать в рамках д/з вывод более приятным для пользователя.
             //  Создать класс WeatherResponse, десериализовать ответ сервера в экземпляр класса
             //  Вывести пользователю только текущую температуру в C и сообщение (weather text)
         }
+
+    }
+
+    public static String removeFirstAndLastChar(String s) {
+        return (s.substring(1, s.length() - 1));
     }
 
     public String detectCityKey() throws IOException {
