@@ -10,8 +10,10 @@ public class UserInterface {
     public void runApplication() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Введите название города на английском языке: ");
+            System.out.println("Введите название города на английском языке или \"выход (exit)\" чтобы завершить работу: ");
             String city = scanner.nextLine();
+
+            checkIsExit(city); // проверяем, не запрошел ли выход из программы
 
             setGlobalCity(city);
 

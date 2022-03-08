@@ -30,7 +30,7 @@ public class DailyForecast {
     @JsonProperty("EpochDate")
     private Integer epochDate;
     @JsonProperty("Temperature")
-    private Temperature temperature;
+    private Temperature5days temperature;
     @JsonProperty("Day")
     private Day day;
     @JsonProperty("Night")
@@ -43,6 +43,11 @@ public class DailyForecast {
     private String link;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+    @Override
+    public String toString() {
+        return date.substring(0, 10) + " ожидается ночью: " + night.getIconPhrase() + ", днём: " + day.getIconPhrase() + ", " + temperature;
+    }
 
     @JsonProperty("Date")
     public String getDate() {
@@ -65,12 +70,12 @@ public class DailyForecast {
     }
 
     @JsonProperty("Temperature")
-    public Temperature getTemperature() {
+    public Temperature5days getTemperature() {
         return temperature;
     }
 
     @JsonProperty("Temperature")
-    public void setTemperature(Temperature temperature) {
+    public void setTemperature(Temperature5days temperature) {
         this.temperature = temperature;
     }
 

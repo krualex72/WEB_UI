@@ -25,6 +25,17 @@ public class Example {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    @Override
+    public String toString() {
+        return "" + dailyForecasts;
+    }
+
+    public void printDailyForecasts() {
+        for (int i = 0; i < 5; i++) {
+            System.out.println("В " + ApplicationGlobalState.getInstance().getSelectedCity() + " " + dailyForecasts.get(i));
+        }
+    }
+
     @JsonProperty("Headline")
     public Headline getHeadline() {
         return headline;

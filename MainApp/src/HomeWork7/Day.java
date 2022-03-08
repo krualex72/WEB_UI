@@ -28,6 +28,11 @@ public class Day {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    @Override
+    public String toString() {
+        return ", днём: " + iconPhrase;
+    }
+
     @JsonProperty("Icon")
     public Integer getIcon() {
         return icon;
