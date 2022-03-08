@@ -6,6 +6,7 @@ public final class ApplicationGlobalState {
     private String selectedCity = null;
     private final String API_KEY = "0d1tNZJPfzzT3qGokM18FGGxAUpt7hpj";
 
+
     private ApplicationGlobalState() {
     }
 
