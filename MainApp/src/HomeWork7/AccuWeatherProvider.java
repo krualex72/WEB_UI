@@ -3,6 +3,7 @@ package HomeWork7;
 // import com.fasterxml.jackson.core.JsonProcessingException;
 import HomeWork7.enums.Periods;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 
@@ -30,32 +31,31 @@ public class AccuWeatherProvider implements WeatherProvider {
                     .scheme("http")
                     .host(BASE_HOST)
                     .addPathSegment(CURRENT_CONDITIONS_ENDPOINT)
-                    //.addPathSegment("ru")
                     .addPathSegment(API_VERSION)
                     .addPathSegment(cityKey)
                     .addQueryParameter("language", "ru-ru") // язык
                     .addQueryParameter("apikey", API_KEY)
                     .build();
-            System.out.println("link = " + url);
+            // System.out.println("link = " + url); // прямая ссылка на зарос API
             Request request = new Request.Builder()
                     .addHeader("accept", "application/json")
                     .url(url)
                     .build();
 
             Response response = client.newCall(request).execute();
-            String body = removeFirstAndLastChar(response.body().string());
-            System.out.println( "New body " + body);
-            // ObjectMapper objectMapper1day = new ObjectMapper();
-            // WeatherResponse weatherResponse = objectMapper1day.readValue(body, WeatherResponse.class);
-            //System.out.println( "New weather " + weatherResponse.toString()); //getWeatherText());
-          // System.out.println(weatherResponse.toString());
-//        }
-//
-//        console output >> Car{color='red', type='BMW'}
+            String body = removeFirstAndLastChar(response.body().string()); // для упрощения десериализации
+            // System.out.println( "New body " + body); вывод ответа с сервера в "удобном" формате
+            ObjectMapper objectMapper1day = new ObjectMapper();
+            JsonNode weatherText = objectMapper1day // текстовое значение погоды
+                    .readTree(body)
+                    .at("/WeatherText");
+            JsonNode currentTemperetura = objectMapper1day // значение температуры
+                    .readTree(body)
+                    .at("/Temperature/Metric/Value");
+            System.out.println("ПРИМЕР БЕЗ ДЕСЕРИАЛИЗАЦИИ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherText.asText() +", температура: " + currentTemperetura);
 
-        // TODO: Сделать в рамках д/з вывод более приятным для пользователя.
-            //  Создать класс WeatherResponse, десериализовать ответ сервера в экземпляр класса
-            //  Вывести пользователю только текущую температуру в C и сообщение (weather text)
+            WeatherResponse weatherResponse = objectMapper1day.readValue(body, WeatherResponse.class);
+            System.out.println( "ПРИМЕР С ДЕСЕРИАЛИЗАЦИЕЙ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherResponse.getWeatherText() + weatherResponse.getTemperature());
         }
 
     }
@@ -99,5 +99,6 @@ public class AccuWeatherProvider implements WeatherProvider {
         } else throw new IOException("Server returns 0 cities");
 
         return objectMapper.readTree(jsonResponse).get(0).at("/Key").asText();
+
     }
 }

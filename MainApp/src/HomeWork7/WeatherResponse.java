@@ -13,14 +13,14 @@ public class WeatherResponse {
     @JsonIgnore
     private float EpochTime;
     private String WeatherText;
-    @JsonIgnore
-    private float WeatherIcon;
-    @JsonIgnore
-    private boolean HasPrecipitation;
-    @JsonIgnore
-    private String PrecipitationType;
-    @JsonIgnore
-    private boolean IsDayTime;
+//    @JsonIgnore
+//    private float WeatherIcon;
+//    @JsonIgnore
+//    private boolean HasPrecipitation;
+//    @JsonIgnore
+//    private String PrecipitationType;
+//    @JsonIgnore
+//    private boolean IsDayTime;
     Temperature TemperatureObject;
     @JsonIgnore
     private String MobileLink;
@@ -47,9 +47,9 @@ public class WeatherResponse {
         return LocalObservationDateTime;
     }
 
-    public float getEpochTime() {
-        return EpochTime;
-    }
+//    public float getEpochTime() {
+//        return EpochTime;
+//    }
 
     public String getWeatherText() {
         return WeatherText;
@@ -63,14 +63,14 @@ public class WeatherResponse {
 //        return HasPrecipitation;
 //    }
 
-    public String getPrecipitationType() {
-        return PrecipitationType;
-    }
-
-    public boolean getIsDayTime() {
-        return IsDayTime;
-    }
-
+//    public String getPrecipitationType() {
+//        return PrecipitationType;
+//    }
+//
+//    public boolean getIsDayTime() {
+//        return IsDayTime;
+//    }
+//
     public Temperature getTemperature() {
         return TemperatureObject;
     }
@@ -89,74 +89,39 @@ public class WeatherResponse {
         this.LocalObservationDateTime = LocalObservationDateTime;
     }
 
-    public void setEpochTime(float EpochTime) {
-        this.EpochTime = EpochTime;
-    }
+//    public void setEpochTime(float EpochTime) {
+//        this.EpochTime = EpochTime;
+//    }
 
     public void setWeatherText(String WeatherText) {
         this.WeatherText = WeatherText;
     }
 
-    public void setWeatherIcon(float WeatherIcon) {
-        this.WeatherIcon = WeatherIcon;
-    }
+//    public void setWeatherIcon(float WeatherIcon) {
+//        this.WeatherIcon = WeatherIcon;
+//    }
 
-    public void setHasPrecipitation(boolean HasPrecipitation) {
-        this.HasPrecipitation = HasPrecipitation;
-    }
-
-    public void setPrecipitationType(String PrecipitationType) {
-        this.PrecipitationType = PrecipitationType;
-    }
-
-    public void setIsDayTime(boolean IsDayTime) {
-        this.IsDayTime = IsDayTime;
-    }
+//    public void setHasPrecipitation(boolean HasPrecipitation) {
+//        this.HasPrecipitation = HasPrecipitation;
+//    }
+//
+//    public void setPrecipitationType(String PrecipitationType) {
+//        this.PrecipitationType = PrecipitationType;
+//    }
+//
+//    public void setIsDayTime(boolean IsDayTime) {
+//        this.IsDayTime = IsDayTime;
+//    }
 
     public void setTemperature(Temperature TemperatureObject) {
         this.TemperatureObject = TemperatureObject;
     }
 
-    public void setMobileLink(String MobileLink) {
-        this.MobileLink = MobileLink;
-    }
-
-    public void setLink(String Link) {
-        this.Link = Link;
-    }
-}
-
-//    public class Imperial {
-//        private float Value;
-//        private String Unit;
-//        private float UnitType;
-//
-//
-//        // Getter Methods
-//
-//        public float getValue() {
-//            return Value;
-//        }
-//
-//        public String getUnit() {
-//            return Unit;
-//        }
-//
-//        public float getUnitType() {
-//            return UnitType;
-//        }
-//
-//        // Setter Methods
-//
-//        public void setValue(float Value) {
-//            this.Value = Value;
-//        }
-//
-//        public void setUnit(String Unit) {
-//            this.Unit = Unit;
-//        }
-//
-//        public void setUnitType(float UnitType) {
-//            this.UnitType = UnitType;
-//        }
+//    public void setMobileLink(String MobileLink) {
+//        this.MobileLink = MobileLink;
 //    }
+//
+//    public void setLink(String Link) {
+//        this.Link = Link;
+//    }
+}
