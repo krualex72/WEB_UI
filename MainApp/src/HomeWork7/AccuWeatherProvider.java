@@ -1,11 +1,13 @@
 package HomeWork7;
 
+import HomeWork7.entity.WeatherData;
 import HomeWork7.enums.Periods;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.StringReader;
+import java.sql.SQLException;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -26,7 +28,7 @@ public class AccuWeatherProvider implements WeatherProvider {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public void getWeather(Periods periods) throws IOException {
+    public WeatherData getWeather(Periods periods) throws IOException, SQLException {
         String cityKey = detectCityKey();
         if (periods.equals(Periods.NOW)) {
             HttpUrl url = new HttpUrl.Builder()
@@ -54,10 +56,20 @@ public class AccuWeatherProvider implements WeatherProvider {
             JsonNode currentTemperetura = objectMapper1day // значение температуры
                     .readTree(body)
                     .at("/Temperature/Metric/Value");
-            System.out.println("ПРИМЕР БЕЗ ДЕСЕРИАЛИЗАЦИИ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherText.asText() +", температура: " + currentTemperetura);
+            System.out.println("ПРИМЕР БЕЗ ДЕСЕРИАЛИЗАЦИИ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() +
+                    ": " + weatherText.asText() +", температура: " + currentTemperetura);
 
             WeatherResponse weatherResponse = objectMapper1day.readValue(body, WeatherResponse.class);
-            System.out.println( "ПРИМЕР С ДЕСЕРИАЛИЗАЦИЕЙ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() + ": " + weatherResponse.getWeatherText() + weatherResponse.getTemperature());
+            String localDate = weatherResponse.getLocalObservationDateTime().substring(0,10); // для удобства чтенния
+            Double dateTemperarure = weatherResponse.getTemperature().getMetric().getValue(); // для удобства чтения
+            System.out.println( "ПРИМЕР С ДЕСЕРИАЛИЗАЦИЕЙ Сейчас в " + ApplicationGlobalState.getInstance().getSelectedCity() +
+                    ": " + weatherResponse.getWeatherText() + ", температура: " + dateTemperarure + ", дата: " + localDate);
+            WeatherData newDbRecord = new WeatherData(ApplicationGlobalState.getInstance().getSelectedCity(), localDate, weatherResponse.getWeatherText(), dateTemperarure);
+            //DatabaseRepositorySQLiteImpl.getConnection();
+            DatabaseRepositorySQLiteImpl dbWeather = new DatabaseRepositorySQLiteImpl();// Создаем экземпляр по работе с БД
+            dbWeather.createTableIfNotExists();  // создаем таблицу (если надо)
+            dbWeather.saveWeatherData(newDbRecord);
+            //System.out.println(newDbRecord.toString());
         } else {
             if (periods.equals(Periods.FIVE_DAYS)) {
                 OkHttpClient client = new OkHttpClient();
@@ -97,6 +109,20 @@ public class AccuWeatherProvider implements WeatherProvider {
             }
         }
 
+        return null; ///большой и толстый вопрос
+    }
+
+//    Double asDouble(Object o) {
+//        Double value = null;
+//        //if (o instanceof Number) {
+//            value = ((Number) o).doubleValue();
+//        //}
+//        return value;
+//    }
+
+    @Override
+    public WeatherData getAllFromDb() throws IOException {
+        return null;
     }
 
     public static String removeFirstAndLastChar(String s) {

@@ -1,6 +1,7 @@
 package HomeWork7;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,7 +12,6 @@ public class Controller {
 
     WeatherProvider weatherProvider = new AccuWeatherProvider();
     Map<Integer, Functionality> variantResult = new HashMap();
-    DatabaseRepositorySQLiteImpl newConnection = new DatabaseRepositorySQLiteImpl();
 
     public Controller() {
         variantResult.put(1, Functionality.GET_CURRENT_WEATHER);
@@ -19,7 +19,7 @@ public class Controller {
         variantResult.put(3, Functionality.GET_WEATHER_FROM_DATABASE);
     }
 
-    public void onUserInput(String input) throws IOException {
+    public void onUserInput(String input) throws IOException, SQLException {
         int command = Integer.parseInt(input);
         if (!variantResult.containsKey(command)) {
             throw new IOException("There is no command for command-key " + command);
@@ -43,11 +43,11 @@ public class Controller {
 // тут нужно дорабатывать и думать
     }
 
-    public void getCurrentWeather() throws IOException {
+    public void getCurrentWeather() throws IOException, SQLException {
         weatherProvider.getWeather(Periods.NOW);
     }
 
-    public void getWeatherIn5Days() throws IOException {
+    public void getWeatherIn5Days() throws IOException, SQLException {
         weatherProvider.getWeather(Periods.FIVE_DAYS);
     }
 }

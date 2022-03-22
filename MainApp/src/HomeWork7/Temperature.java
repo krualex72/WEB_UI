@@ -16,7 +16,7 @@ public class Temperature {
 
     @Override
     public String toString() {
-        return ", температура воздуха: " + MetricObject;
+        return "" + MetricObject;
     }
 
     // Getter Methods

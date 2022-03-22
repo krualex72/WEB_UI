@@ -8,10 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Metric {
-    private float Value;
+    private Double Value;
 
     @JsonCreator
-    public Metric(@JsonProperty("Value") float Value) {
+    public Metric(@JsonProperty("Value") Double Value) {
         this.Value = Value;
     }
 
@@ -21,12 +21,12 @@ public class Metric {
     }
 
     // Getter Methods
-    public float getValue() {
+    public Double getValue() {
         return Value;
     }
 
     // Setter Methods
-    public void setValue(float Value) {
+    public void setValue(Double Value) {
         this.Value = Value;
     }
 

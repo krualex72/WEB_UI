@@ -20,25 +20,28 @@ public class DatabaseRepositorySQLiteImpl implements DatabaseRepository {
     }
 
     String filename = null;
-    String createTableQuery = "CREATE TABLE IF NOT EXISTS weather (\n" +
-            "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            "city TEXT NOT NULL,\n" +
-            "date_time TEXT NOT NULL,\n" +
-            "weather_text TEXT NOT NULL,\n" +
-            "temperature REAL NOT NULL,\n" +
-            ");";
+//    String createTableQuery1 = "CREATE TABLE IF NOT EXISTS weather (\n" +
+//            "id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+//            "city TEXT NOT NULL,\n" +
+//            "date_time TEXT NOT NULL,\n" +
+//            "weather_text TEXT NOT NULL,\n" +
+//            "temperature REAL NOT NULL,\n" +
+//            ");";
+    String createTableQuery = "CREATE TABLE if not exists 'weather' ('id' INTEGER PRIMARY KEY AUTOINCREMENT,"+
+            "'city' TEXT NOT NULL,'date_time' TEXT NOT NULL,'weather_text' TEXT NOT NULL, 'temperature' REAL NOT NULL);";
+
     String insertWeatherQuery = "INSERT INTO weather (city, date_time, weather_text, temperature) VALUES (?,?,?,?)";
 
     public DatabaseRepositorySQLiteImpl() {
         filename = ApplicationGlobalState.getInstance().getDbFileName();
     }
 
-    private Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:sqlite:" + filename);
         return connection;
     }
 
-    private void createTableIfNotExists() {
+    public void createTableIfNotExists() {
         try (Connection connection = getConnection()) {
             connection.createStatement().execute(createTableQuery);
         } catch (SQLException throwables) {

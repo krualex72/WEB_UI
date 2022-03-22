@@ -20,9 +20,10 @@ public class WeatherResponse {
     private String Link;
 
     @JsonCreator
-    public WeatherResponse(@JsonProperty("WeatherText") String WeatherText, @JsonProperty("Temperature") Temperature TemperatureObject) {
+    public WeatherResponse(@JsonProperty("LocalObservationDateTime") String LocalObservationDateTime, @JsonProperty("WeatherText") String WeatherText, @JsonProperty("Temperature") Temperature TemperatureObject) {
         this.WeatherText = WeatherText;
         this.TemperatureObject = TemperatureObject;
+        this.LocalObservationDateTime = LocalObservationDateTime;
     }
 
     @Override
@@ -62,6 +63,14 @@ public class WeatherResponse {
 
     public void setTemperature(Temperature TemperatureObject) {
         this.TemperatureObject = TemperatureObject;
+    }
+
+    Double asDouble(Object o) {
+        Double value = null;
+        if (o instanceof Number) {
+            value = ((Number) o).doubleValue();
+        }
+        return value;
     }
 
 }
