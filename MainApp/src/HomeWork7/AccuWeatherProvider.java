@@ -83,7 +83,7 @@ public class AccuWeatherProvider implements WeatherProvider {
                         .build();
 
                 String jsonResponse = client.newCall(requesthttp).execute().body().string();
-//              Ниже типичный ответ сервера (для решения задачии отработкт в автономном режиме)
+//              Ниже типичный ответ сервера (для решения задачи и отработки в автономном режиме)
 //                String jsonResponse = "{\"Headline\":{\"EffectiveDate\":\"2022-03-09T19:00:00+03:00\",\"EffectiveEpochDate\":1646841600,\"Severity\":5,\"Text\":\"Среда, ночь: при отсутствии защитной одежды вероятно переохлаждение\",\"Category\":\"cold\",\"EndDate\":\"2022-03-10T07:00:00+03:00\",\"EndEpochDate\":1646884800,\"MobileLink\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?unit=c\",\"Link\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?unit=c\"},\"DailyForecasts\":[{\"Date\":\"2022-03-08T07:00:00+03:00\",\"EpochDate\":1646712000,\"Temperature\":{\"Minimum\":{\"Value\":-11.1,\"Unit\":\"C\",\"UnitType\":17},\"Maximum\":{\"Value\":-2.2,\"Unit\":\"C\",\"UnitType\":17}},\"Day\":{\"Icon\":22,\"IconPhrase\":\"Снег\",\"HasPrecipitation\":true,\"PrecipitationType\":\"Snow\",\"PrecipitationIntensity\":\"Light\"},\"Night\":{\"Icon\":8,\"IconPhrase\":\"Пасмурно\",\"HasPrecipitation\":false},\"Sources\":[\"AccuWeather\"],\"MobileLink\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=1&unit=c\",\"Link\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=1&unit=c\"},{\"Date\":\"2022-03-09T07:00:00+03:00\",\"EpochDate\":1646798400,\"Temperature\":{\"Minimum\":{\"Value\":-14.5,\"Unit\":\"C\",\"UnitType\":17},\"Maximum\":{\"Value\":-5.9,\"Unit\":\"C\",\"UnitType\":17}},\"Day\":{\"Icon\":1,\"IconPhrase\":\"Солнечно\",\"HasPrecipitation\":false},\"Night\":{\"Icon\":33,\"IconPhrase\":\"Ясно\",\"HasPrecipitation\":false},\"Sources\":[\"AccuWeather\"],\"MobileLink\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=2&unit=c\",\"Link\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=2&unit=c\"},{\"Date\":\"2022-03-10T07:00:00+03:00\",\"EpochDate\":1646884800,\"Temperature\":{\"Minimum\":{\"Value\":-14.3,\"Unit\":\"C\",\"UnitType\":17},\"Maximum\":{\"Value\":-4.5,\"Unit\":\"C\",\"UnitType\":17}},\"Day\":{\"Icon\":1,\"IconPhrase\":\"Солнечно\",\"HasPrecipitation\":false},\"Night\":{\"Icon\":33,\"IconPhrase\":\"Ясно\",\"HasPrecipitation\":false},\"Sources\":[\"AccuWeather\"],\"MobileLink\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=3&unit=c\",\"Link\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=3&unit=c\"},{\"Date\":\"2022-03-11T07:00:00+03:00\",\"EpochDate\":1646971200,\"Temperature\":{\"Minimum\":{\"Value\":-11.6,\"Unit\":\"C\",\"UnitType\":17},\"Maximum\":{\"Value\":-1.3,\"Unit\":\"C\",\"UnitType\":17}},\"Day\":{\"Icon\":1,\"IconPhrase\":\"Солнечно\",\"HasPrecipitation\":false},\"Night\":{\"Icon\":34,\"IconPhrase\":\"Преимущественно ясно\",\"HasPrecipitation\":false},\"Sources\":[\"AccuWeather\"],\"MobileLink\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=4&unit=c\",\"Link\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=4&unit=c\"},{\"Date\":\"2022-03-12T07:00:00+03:00\",\"EpochDate\":1647057600,\"Temperature\":{\"Minimum\":{\"Value\":-3.8,\"Unit\":\"C\",\"UnitType\":17},\"Maximum\":{\"Value\":2.2,\"Unit\":\"C\",\"UnitType\":17}},\"Day\":{\"Icon\":6,\"IconPhrase\":\"Преимущественно облачно\",\"HasPrecipitation\":false},\"Night\":{\"Icon\":8,\"IconPhrase\":\"Пасмурно\",\"HasPrecipitation\":false},\"Sources\":[\"AccuWeather\"],\"MobileLink\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=5&unit=c\",\"Link\":\"http://www.accuweather.com/ru/ru/moscow/294021/daily-weather-forecast/294021?day=5&unit=c\"}]}";
 //                System.out.println(jsonResponse);
                 ObjectMapper mapper = new ObjectMapper();
@@ -117,27 +117,27 @@ public class AccuWeatherProvider implements WeatherProvider {
                 .addQueryParameter("q", selectedCity)
                 .build();
 
-//        Request request = new Request.Builder()
-//                .addHeader("accept", "application/json")
-//                .url(detectLocationURL)
-//                .build();
-//
-//        Response response = client.newCall(request).execute();
-//
-//        if (!response.isSuccessful()) {
-//            throw new IOException("Невозможно прочесть информацию о городе. " +
-//                    "Код ответа сервера = " + response.code() + " тело ответа = " + response.body().string());
-//        }
-//        String jsonResponse = response.body().string();
-//        System.out.println("Произвожу поиск города " + selectedCity);
-//
-//        if (objectMapper.readTree(jsonResponse).size() > 0) {
-//            String cityName = objectMapper.readTree(jsonResponse).get(0).at("/LocalizedName").asText();
-//            String countryName = objectMapper.readTree(jsonResponse).get(0).at("/Country/LocalizedName").asText();
-//            System.out.println("Найден город " + cityName + " в стране " + countryName);
-//        } else throw new IOException("Server returns 0 cities");
-//
-//        return objectMapper.readTree(jsonResponse).get(0).at("/Key").asText();
-        return "1";
+        Request request = new Request.Builder()
+                .addHeader("accept", "application/json")
+                .url(detectLocationURL)
+                .build();
+
+        Response response = client.newCall(request).execute();
+
+        if (!response.isSuccessful()) {
+            throw new IOException("Невозможно прочесть информацию о городе. " +
+                    "Код ответа сервера = " + response.code() + " тело ответа = " + response.body().string());
+        }
+        String jsonResponse = response.body().string();
+        System.out.println("Произвожу поиск города " + selectedCity);
+
+        if (objectMapper.readTree(jsonResponse).size() > 0) {
+            String cityName = objectMapper.readTree(jsonResponse).get(0).at("/LocalizedName").asText();
+            String countryName = objectMapper.readTree(jsonResponse).get(0).at("/Country/LocalizedName").asText();
+            System.out.println("Найден город " + cityName + " в стране " + countryName);
+        } else throw new IOException("Server returns 0 cities");
+
+        return objectMapper.readTree(jsonResponse).get(0).at("/Key").asText();
+        // return "1";
    }
 }

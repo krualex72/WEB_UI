@@ -11,10 +11,12 @@ public class Controller {
 
     WeatherProvider weatherProvider = new AccuWeatherProvider();
     Map<Integer, Functionality> variantResult = new HashMap();
+    DatabaseRepositorySQLiteImpl newConnection = new DatabaseRepositorySQLiteImpl();
 
     public Controller() {
         variantResult.put(1, Functionality.GET_CURRENT_WEATHER);
         variantResult.put(2, Functionality.GET_WEATHER_IN_NEXT_5_DAYS);
+        variantResult.put(3, Functionality.GET_WEATHER_FROM_DATABASE);
     }
 
     public void onUserInput(String input) throws IOException {
@@ -31,7 +33,14 @@ public class Controller {
             case GET_WEATHER_IN_NEXT_5_DAYS:
                 getWeatherIn5Days();
                 break;
+            case GET_WEATHER_FROM_DATABASE:
+                getWeatherFromDatabase();
+                break;
         }
+    }
+
+    private void getWeatherFromDatabase() throws IOException  {
+// тут нужно дорабатывать и думать
     }
 
     public void getCurrentWeather() throws IOException {
