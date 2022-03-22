@@ -1,4 +1,4 @@
-package lesson7.entity;
+package HomeWork7.entity;
 
 
 public class WeatherData {
