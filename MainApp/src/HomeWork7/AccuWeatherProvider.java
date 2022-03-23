@@ -7,7 +7,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.StringReader;
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -104,6 +107,8 @@ public class AccuWeatherProvider implements WeatherProvider {
                 Example example = mapper.readValue(reader, Example.class);
 //                System.out.println("Погода на 5 дней в " + ApplicationGlobalState.getInstance().getSelectedCity());
 //                System.out.println(example);
+                DatabaseRepositorySQLiteImpl dbWeather = new DatabaseRepositorySQLiteImpl();// Создаем экземпляр по работе с БД
+                dbWeather.createTableIfNotExists();  // создаем таблицу (если надо)
                 example.printDailyForecasts();
 
             }
@@ -112,16 +117,36 @@ public class AccuWeatherProvider implements WeatherProvider {
         return null; ///большой и толстый вопрос
     }
 
-//    Double asDouble(Object o) {
-//        Double value = null;
-//        //if (o instanceof Number) {
-//            value = ((Number) o).doubleValue();
-//        //}
-//        return value;
-//    }
-
     @Override
-    public WeatherData getAllFromDb() throws IOException {
+    public WeatherData getAllFromDb() throws IOException, SQLException {
+        String dateForSearch = ApplicationGlobalState.getInstance().getEnteredDate(); // дата поиска
+        String cityForSearch = ApplicationGlobalState.getInstance().getSelectedCity(); // город для поиска
+        int match = 0; // счетчик совпадений в БД
+        DatabaseRepositorySQLiteImpl dbWeather = new DatabaseRepositorySQLiteImpl();// Создаем экземпляр по работе с БД
+        List WeatherList = dbWeather.getAllSavedData();
+//        System.out.println("The WeatherList is "+ WeatherList); // вывод БД в строчку
+//        System.out.println("Искомая дата " + dateForSearch); // вывод искомой даты
+//        System.out.println("Искомый город " + cityForSearch); // вывод искоимого города
+        for (int i = 0; i < WeatherList.size(); i++) {
+            WeatherData listData = new WeatherData();
+            listData = (WeatherData) WeatherList.get(i);
+            if (listData.getCity().equals(cityForSearch) && listData.getLocalDate().equals(dateForSearch)) {
+            System.out.println("Найдена запись в БД: " + listData.toString());
+            match ++;
+            }
+        }
+        if(match == 0) {
+            System.out.println("Совпадающих записей в БД НЕ НАЙДЕНО! ");
+        }
+
+        //arrayWeather = DatabaseRepositorySQLiteImpl.getAllSavedData();
+
+
+
+
+
+
+
         return null;
     }
 

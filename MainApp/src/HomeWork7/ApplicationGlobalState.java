@@ -4,6 +4,7 @@ public final class ApplicationGlobalState {
 
     private static ApplicationGlobalState INSTANCE;
     private String selectedCity = null;
+    private String enteredDate = null;
     private final String API_KEY = "0d1tNZJPfzzT3qGokM18FGGxAUpt7hpj";
     private final String DB_FILENAME = "application.db";
 
@@ -24,10 +25,18 @@ public final class ApplicationGlobalState {
         return selectedCity;
     }
 
+    public String getEnteredDate() {
+        return enteredDate;
+    }
+
     public String getDbFileName() { return DB_FILENAME; }
 
     public void setSelectedCity(String selectedCity) {
         this.selectedCity = selectedCity;
+    }
+
+    public void setEnteredDate(String enteredDate) {
+        this.enteredDate = enteredDate;
     }
 
     public String getApiKey() {

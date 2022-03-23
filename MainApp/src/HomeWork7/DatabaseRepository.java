@@ -10,6 +10,6 @@ import java.util.List;
 public interface DatabaseRepository {
 
     boolean saveWeatherData(WeatherData weatherData) throws SQLException;
-    List<WeatherData> getAllSavedData() throws IOException;
+    List<WeatherData> getAllSavedData() throws IOException, SQLException;
 
 }

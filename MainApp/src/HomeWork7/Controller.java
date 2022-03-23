@@ -39,8 +39,8 @@ public class Controller {
         }
     }
 
-    private void getWeatherFromDatabase() throws IOException  {
-// тут нужно дорабатывать и думать
+    private void getWeatherFromDatabase() throws IOException, SQLException {
+        weatherProvider.getAllFromDb();
     }
 
     public void getCurrentWeather() throws IOException, SQLException {

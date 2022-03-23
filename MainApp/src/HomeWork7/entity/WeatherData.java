@@ -49,4 +49,9 @@ public class WeatherData {
     public void setTemperature(Double temperature) {
         this.temperature = temperature;
     }
+
+    @Override
+    public String toString () {
+        return (city + ", " + localDate + ", " + text + ", " + temperature);
+    }
 }

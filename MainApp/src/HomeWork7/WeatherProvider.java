@@ -12,6 +12,6 @@ public interface WeatherProvider {
 
     WeatherData getWeather(Periods periods) throws IOException, SQLException;
 
-    WeatherData getAllFromDb() throws IOException;
+    WeatherData getAllFromDb() throws IOException, SQLException;
 
 }

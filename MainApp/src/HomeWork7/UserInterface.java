@@ -26,6 +26,8 @@ public class UserInterface {
 
             checkIsExit(result);
 
+            checkIs3(result);
+
             try {
                 validateUserInput(result);
             } catch (IOException e) {
@@ -42,6 +44,18 @@ public class UserInterface {
         }
     }
 
+    private void checkIs3(String result) {
+        String searchDate = null;
+        if (result.equals("3")) {
+            Scanner scanner1 = new Scanner(System.in);
+            // while (true) {
+            System.out.println("Введите дату, на которую хотите проверить прогноз в БД в формате YYYY-MM-DD:");
+            String enteredDate = scanner1.nextLine();
+            setSearchDate(enteredDate);
+            //}
+        }
+    }
+
     private void checkIsExit(String result) {
         if (result.toLowerCase().equals("выход") || result.toLowerCase().equals("exit")) {
             System.out.println("Завершаю работу");
@@ -53,10 +67,14 @@ public class UserInterface {
         ApplicationGlobalState.getInstance().setSelectedCity(city);
     }
 
+    private void setSearchDate(String enteredDate) {
+        ApplicationGlobalState.getInstance().setEnteredDate(enteredDate);
+    }
+
 
     private void validateUserInput(String userInput) throws IOException {
         if (userInput == null || userInput.length() != 1) {
-            throw new IOException("Некорректный ввод: ожидается одно чисоло в ответе, фактически введено:  " + userInput);
+            throw new IOException("Некорректный ввод: ожидается одно число в ответе, фактически введено:  " + userInput);
         }
         int answer = 0;
         try {

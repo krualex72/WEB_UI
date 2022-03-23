@@ -65,12 +65,5 @@ public class WeatherResponse {
         this.TemperatureObject = TemperatureObject;
     }
 
-    Double asDouble(Object o) {
-        Double value = null;
-        if (o instanceof Number) {
-            value = ((Number) o).doubleValue();
-        }
-        return value;
-    }
 
 }
